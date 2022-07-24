@@ -1,5 +1,6 @@
 package ru.netology.test;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.exactText;
@@ -17,13 +18,14 @@ public class CardOrderTest {
         $("[data-test-id=order-success").shouldHave(exactText("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время."));
     }
     @Test
+    @Disabled
     void invalidSurnameAndName(){
         open("http://localhost:9999/");
         $("[data-test-id=name] input").setValue("Vasya Pupkin");
         $("[data-test-id=phone] input").setValue("+79123456789");
         $("[data-test-id=agreement]").click();
         $("button[type=button]").click();
-        $("[data-test-id=name] span[class=input__sub]").shouldHave(exactText("Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы."));
+        $("[data-test-id=name] span[class=input__sub]").shouldHave(exactText("Имя и Фамилия указаны неверно. Допустимы только русские буквы, пробелы и дефисы."));
     }
     @Test
     void invalidPhoneNumber() {
